@@ -1,0 +1,2 @@
+# all boringssl c source files for source distribution
+global-include *.cc *.c *.cmake *.txt *.rs, *.h, *.S, *.pl, *.errordata, *.go

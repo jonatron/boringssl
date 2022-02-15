@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  build-wheel:
+    runs-on: ubuntu-latest
+    environment: testpypi
+    env:
+      TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+      TEST_ENV: works
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run test.sh in manylinux
+        uses: docker://quay.io/pypa/manylinux2014_x86_64
+        with:
+          entrypoint: /github/workspace/test.sh
+          TEST_WITH_ENV: with_works
